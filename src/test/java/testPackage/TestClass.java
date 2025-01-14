@@ -1,13 +1,15 @@
 package testPackage;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
+
 import org.testng.Assert;
+
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.List;
 
 public class TestClass {
 
@@ -42,6 +44,7 @@ public class TestClass {
 
     @Test
     public void test2() {
+
 
         // Set the system property for ChromeDriver
         // System.setProperty("WebDriver.chrome.driver", "path/to/chromedriver");
@@ -136,8 +139,7 @@ public class TestClass {
 
             // Assert the text
             Assert.assertEquals(message, "Received!");
-        }
-        finally {
+        } finally {
             // Close the browser after performing the test
             // driver.quit();
         }
@@ -145,7 +147,6 @@ public class TestClass {
 
     @Test
     public void test5() {
-        // Task 3
         WebDriver driver = new ChromeDriver();
 
         try {
@@ -169,10 +170,58 @@ public class TestClass {
             String url = driver.getCurrentUrl();
 
             Assert.assertEquals(url, "https://www.selenium.dev/documentation/webdriver/");
-        }
-        finally {
+        } finally {
             // Close the browser after performing the test
             driver.quit();
         }
     }
+
+    @Test
+    public void test6() {
+
+        WebDriver driver = new ChromeDriver();
+
+        try {
+
+            driver.navigate().to("https://duckduckgo.com/");
+            WebElement searchBar = driver.findElement(By.id("searchbox_input"));
+            searchBar.sendKeys("Selenium WebDriver");
+            searchBar.click();
+
+            List<WebElement> resultTitles = driver.findElements(By.cssSelector("a.result__a"));
+            driver.manage().timeouts().implicitlyWait(Duration.ofMillis(400));
+            WebElement fourthResult = resultTitles.getFirst();
+            String firstResultText = fourthResult.getText();
+
+            Assert.assertEquals(firstResultText, "Selenium WebDriver");
+
+        } finally {
+            // Close the browser after performing the test
+            driver.quit();
+        }
+    }
+
+    @Test
+    public void test7() {
+        // Session task of the box: https://www.selenium.dev/selenium/web/dynamic.html
+        WebDriver driver = new ChromeDriver();
+
+        try {
+
+            driver.navigate().to("https://www.selenium.dev/selenium/web/dynamic.html");
+            WebElement addABox = driver.findElement(By.id("adder"));
+            addABox.click();
+
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+
+            WebElement redBox = driver.findElement(By.id("box0"));
+
+            Assert.assertTrue(redBox.isDisplayed(), "It didn't appear my friend");
+
+        } finally {
+            // Close the browser after performing the test
+            driver.quit();
+        }
+    }
+
 }
