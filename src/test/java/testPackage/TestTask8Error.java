@@ -13,6 +13,7 @@ ________________ Moderate ________________
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -20,9 +21,14 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class TestTask8 {
+public class TestTask8Error {
 
     WebDriver driver;
+
+    // Explicit
+    // Wait<WebDriver> wait;
+
+    WebDriverWait myWait;
 
     @Test
     public void task8() {
@@ -45,12 +51,26 @@ public class TestTask8 {
         By uploadButton = By.id("file-submit");
         driver.findElement(uploadButton).click();
 
+        // Explicit
+        // wait.until(d -> isSuccessMessageDisplayed);
+
+        // Pavan explicit wait
+        // boolean isMessageDisplayed = myWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text() = 'File Uploaded!']"))).isDisplayed();
+
+        // Lambda attempt
+        boolean isMessageDisplayed = myWait.until(d -> driver.findElement(By.xpath("//h3[text() = 'File Uploaded!']"))).isDisplayed();
+
         // Locate success message
-        By successMessage = By.xpath("//h3[text() = 'File Uploaded!']");
-        boolean isSuccessMessageDisplayed = driver.findElement(successMessage).isDisplayed();
+        //By successMessage = By.xpath("//h3[text() = 'File Uploaded!']");
+        //boolean isSuccessMessageDisplayed = driver.findElement(successMessage).isDisplayed();
+
+
 
         // Assertion
-        Assert.assertTrue(isSuccessMessageDisplayed, "File upload isn't successful");
+        //Assert.assertTrue(isSuccessMessageDisplayed, "File upload isn't successful");
+
+        // Pavan
+        Assert.assertTrue(isMessageDisplayed, "Message didn't appear");
     }
 
     @BeforeClass
@@ -60,7 +80,13 @@ public class TestTask8 {
         driver = new ChromeDriver();
 
         // Implicit wait
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+
+        // Explicit wait
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        // Pavavn
+         myWait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
     @AfterClass
