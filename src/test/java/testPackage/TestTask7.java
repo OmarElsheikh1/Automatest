@@ -59,6 +59,6 @@ public class TestTask7 {
     public void tearDown() {
 
         // close driver
-        driver.quit();
+        // driver.quit();
     }
 }
