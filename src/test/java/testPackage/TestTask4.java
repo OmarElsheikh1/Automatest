@@ -1,5 +1,14 @@
 package testPackage;
 
+/*
+________________ Moderate ________________
+●	Open Mozilla Firefox
+●	Navigate to [https://duckduckgo.com/]
+●	Search for [TestNG]
+●	Assert that the text of the fourth result is [TestNG Tutorial]
+●	Close Mozilla Firefox
+*/
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;

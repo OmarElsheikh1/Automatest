@@ -1,5 +1,15 @@
 package testPackage;
 
+/*
+________________ Basic ________________
+●	Open Google Chrome
+●	Navigate to [https://duckduckgo.com/]
+●	Search for [Selenium WebDriver]
+●	Assert that the link of the first result is [https://www.selenium.dev/documentation/webdriver/]
+●	Close Google Chrome
+*/
+
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

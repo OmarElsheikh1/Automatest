@@ -1,5 +1,15 @@
 package testPackage;
 
+/*
+________________ Moderate* ________________
+●	Open Google Chrome
+●	Navigate to [https://duckduckgo.com/]
+●	Search for [Cucumber IO]
+●	Navigate to the second results page
+●	Assert that the link of the second result contains [https://www.linkedin.com]
+●	Close Google Chrome
+*/
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
